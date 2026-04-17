@@ -135,10 +135,6 @@
     </nav>
 
     <script>
-        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-            window.location.href = 'telephone/';
-        }
-
         function changeLang(lang) {
             localStorage.setItem('preferredLang', lang);
             // Если в твоем lang.js есть функция updateLanguage, вызываем её
