@@ -2,24 +2,78 @@
 <html>
 <head>
     <title>TCK-team | Sostav</title>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <!-- Подключение шрифта -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         body { font-family: 'Roboto', sans-serif; padding: 40px; text-align: center; background-color: #1a1a1a; color: white; }
         .roster { list-style: none; padding: 0; font-size: 24px; }
         .roster li { margin: 10px 0; padding: 10px; border-bottom: 1px solid #333; }
-        .back-btn { margin-top: 30px; display: inline-block; color: #aaa; text-decoration: none; border: 1px solid #aaa; padding: 10px 20px; border-radius: 5px; }
+        .back-btn { 
+            margin-top: 30px; 
+            display: inline-block; 
+            color: #aaa; 
+            text-decoration: none; 
+            border: 1px solid #aaa; 
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            cursor: pointer;
+            background: transparent;
+            font-size: 16px;
+        }
         .back-btn:hover { background: #aaa; color: #000; }
     </style>
 </head>
 <body>
-    <h1>Team Roster / Состав команды</h1>
+
+    <h1 id="sostav-title" data-key="sostavTitle">Team Roster</h1>
+
     <ul class="roster">
-        <li>👑 Player_1 (Captain)</li>
+        <li>👑 Player_1 <span data-key="cap">(Captain)</span></li>
         <li>🔫 Player_2</li>
         <li>💣 Player_3</li>
         <li>🎯 Player_4</li>
         <li>🔪 Player_5</li>
     </ul>
-    <a href="index.html" class="back-btn">← Back to Main / Назад</a>
+    
+    <!-- Ссылка назад на главную -->
+    <a href="../" class="back-btn" id="back-btn" data-key="backBtn">← Back to Main</a>
+
+    <script>
+        // Объект с переводами для этой страницы
+        const translations = {
+            ru: {
+                sostavTitle: "Состав команды",
+                cap: "(Капитан)",
+                backBtn: "← Назад на главную"
+            },
+            en: {
+                sostavTitle: "Team Roster",
+                cap: "(Captain)",
+                backBtn: "← Back to Main"
+            }
+        };
+
+        function applyLanguage() {
+            // Читаем сохраненный язык из памяти (тот, что поставили на главной)
+            // Если там ничего нет, ставим английский
+            const savedLang = localStorage.getItem('preferredLang') || 'en';
+            
+            const elements = document.querySelectorAll('[data-key]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[savedLang][key]) {
+                    el.textContent = translations[savedLang][key];
+                }
+            });
+
+            document.documentElement.lang = savedLang;
+        }
+
+        // Запускаем перевод сразу при загрузке страницы
+        window.onload = applyLanguage;
+    </script>
 </body>
 </html>
