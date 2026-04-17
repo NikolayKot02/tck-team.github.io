@@ -16,7 +16,7 @@ const translations = {
         ttLabel: "ТикТок",
         // Описания игроков
         player_smert_info: "Один из основателей Tck Team. Профессиональный игрок.",
-        player_2_info: "Информация о втором игроке."
+        player_2_info: "Брат основателя. Скиловый игрок."
     },
     en: {
         titlePart1: "TCK",
@@ -35,7 +35,7 @@ const translations = {
         ttLabel: "TikTok",
         // Player descriptions
         player_smert_info: "One of the founders of Tck Team. Professional player.",
-        player_2_info: "Information about the second player."
+        player_2_info: "The founder's brother. A skilled player."
     },
     ua: {
         titlePart1: "TCK",
@@ -54,7 +54,7 @@ const translations = {
         ttLabel: "ТікТок",
         // Описи гравців
         player_smert_info: "Один із засновників Tck Team. Професійний гравець.",
-        player_2_info: "Інформація про другого гравця."
+        player_2_info: "Брат засновника. Скиловий гравець."
     }
 };
 
