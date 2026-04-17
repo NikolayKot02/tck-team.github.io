@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
     
-    <!-- Твой файл с переводами в GitHub -->
+    <!-- Твой файл с переводами -->
     <script src="lang.js"></script>
     
     <style>
@@ -26,18 +26,17 @@
             position: relative;
         }
 
-        /* Тот самый фон через класс bg-image */
         .bg-image {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Чтобы фото не сжималось */
-            opacity: 0.4;      /* Прозрачность 40% */
-            filter: blur(5px); /* Размытие */
-            z-index: -1;       /* На задний план */
-            transform: scale(1.1); /* Чтобы не было белых краев при блюре */
+            object-fit: cover;
+            opacity: 0.4;
+            filter: blur(5px);
+            z-index: -1;
+            transform: scale(1.1);
             pointer-events: none;
         }
 
@@ -71,12 +70,9 @@
             letter-spacing: -2px; 
         }
 		
-		.teks1 {
-			color: #002aff; /* Синий цвет для TCK */
-		}
-
+		.teks1 { color: #002aff; }
         .highlight { 
-            color: #ff0000; /* Красный цвет для Team */
+            color: #ff0000; 
             text-shadow: 0 0 30px rgba(0, 255, 0, 0.5); 
         }
 
@@ -107,11 +103,7 @@
         }
 
         .nav-item:last-child { border-right: none; }
-
-        .nav-item:hover { 
-            color: #00ff00; 
-            background: rgba(0, 255, 0, 0.05); 
-        }
+        .nav-item:hover { color: #00ff00; background: rgba(0, 255, 0, 0.05); }
 
         .lang-switch { position: absolute; top: 20px; right: 20px; z-index: 10; }
         .lang-btn { background: rgba(0,0,0,0.5); border: 1px solid #444; color: #777; padding: 6px 12px; cursor: pointer; margin-left: 5px; border-radius: 2px; font-size: 12px; transition: 0.3s; }
@@ -120,46 +112,49 @@
 </head>
 <body>
 
-    <!-- Фоновая картинка -->
     <img src="Cs.jpg" class="bg-image" alt="Background">
 
     <div class="lang-switch">
         <button class="lang-btn" onclick="changeLang('en')">EN</button>
         <button class="lang-btn" onclick="changeLang('ru')">RU</button>
+        <button class="lang-btn" onclick="changeLang('ua')">UA</button>
     </div>
 
     <div class="content">
         <div class="glow"></div>
         <h1 class="main-title">
-            <span class="teks1" data-key="titlePart1">TCK</span>
-            <span class="highlight" data-key="titlePart2">Team</span>
+            <span class="teks1" data-lang="titlePart1">TCK</span>
+            <span class="highlight" data-lang="titlePart2">Team</span>
         </h1>
     </div>
 
     <nav class="bottom-nav">
-        <button class="nav-item" onclick="window.location.href='sostav/'" data-key="menuSostav">Составы</button>
-        <button class="nav-item" onclick="window.location.href='matches/'" data-key="menuMatches">Матчи</button>
-        <button class="nav-item" onclick="window.location.href='social/'" data-key="menuSocial">Соцсети</button>
+        <button class="nav-item" onclick="window.location.href='sostav/'" data-lang="menuSostav">Составы</button>
+        <button class="nav-item" onclick="window.location.href='matches/'" data-lang="menuMatches">Матчи</button>
+        <button class="nav-item" onclick="window.location.href='social/'" data-lang="menuSocial">Соцсети</button>
     </nav>
 
     <script>
-        // Проверка на телефон
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
             window.location.href = 'telephone/';
         }
 
         function changeLang(lang) {
-            if (typeof translations !== 'undefined') {
-                const elements = document.querySelectorAll('[data-key]');
+            localStorage.setItem('preferredLang', lang);
+            // Если в твоем lang.js есть функция updateLanguage, вызываем её
+            if (typeof updateLanguage === 'function') {
+                updateLanguage();
+            } else if (typeof translations !== 'undefined') {
+                // Запасной вариант, если функция еще не загрузилась
+                const elements = document.querySelectorAll('[data-lang]');
                 elements.forEach(el => {
-                    const key = el.getAttribute('data-key');
-                    if (translations[lang][key]) {
+                    const key = el.getAttribute('data-lang');
+                    if (translations[lang] && translations[lang][key]) {
                         el.textContent = translations[lang][key];
                     }
                 });
-                localStorage.setItem('preferredLang', lang);
-                document.documentElement.lang = lang;
             }
+            document.documentElement.lang = lang;
         }
 
         window.onload = function() {
