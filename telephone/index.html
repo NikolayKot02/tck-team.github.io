@@ -1,1 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TCK-team</title>
+    <!-- Подключение шрифта Roboto -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        .lang-switch {
+            margin-bottom: 20px;
+        }
+        button {
+            cursor: pointer;
+            padding: 8px 15px;
+            font-family: 'Roboto', sans-serif;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #eee;
+        }
+        .sostav-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #24292e; /* Цвет в стиле GitHub */
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .sostav-btn:hover {
+            background-color: #444;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .links {
+            margin-top: 25px;
+        }
+        a { color: #0366d6; }
+    </style>
+</head>
+<body>
+
+    <!-- Кнопки переключения языка -->
+    <div class="lang-switch">
+        <button onclick="changeLang('en')">EN</button>
+        <button onclick="changeLang('ru')">RU</button>
+    </div>
+
+    <!-- Основной контент -->
+    <h1 id="title" data-key="title">It's website tck-team in cs</h1>
+
+    <img src="Cs.jpeg" alt="Cs" width="900">
+
+    <br>
+
+    <!-- КНОПКА СОСТАВА -->
+    <button class="sostav-btn" id="btn-sostav" data-key="btnSostav" onclick="window.location.href='sostav'">
+        View Team Roster
+    </button>
+
+    <div class="links">
+        <p id="useful-links" data-key="usefulLinks">Useful links:</p>
+        <ul>
+            <li><a href="https://steamcommunity.com" target="_blank">Steam Profile</a></li>
+            <li><a href="https://github.com" target="_blank">Our GitHub</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // Объект с переводами
+        const translations = {
+            ru: {
+                title: "Это сайт tck-team в CS",
+                usefulLinks: "Полезные ссылки:",
+                btnSostav: "Посмотреть состав команды"
+            },
+            en: {
+                title: "It's website tck-team in cs",
+                usefulLinks: "Useful links:",
+                btnSostav: "View Team Roster"
+            }
+        };
+
+        function changeLang(lang) {
+            // Ищем все элементы с атрибутом data-key и меняем им текст
+            const elements = document.querySelectorAll('[data-key]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            // Сохраняем выбор в браузере и меняем атрибут языка
+            document.documentElement.lang = lang;
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        // АВТООПРЕДЕЛЕНИЕ ПРИ ЗАГРУЗКЕ
+        window.onload = function() {
+            let savedLang = localStorage.getItem('preferredLang');
+
+            if (!savedLang) {
+                // Проверка языка браузера
+                savedLang = navigator.language.startsWith('ru') ? 'ru' : 'en';
+            }
+
+            changeLang(savedLang);
+            console.log('Language set to:', savedLang);
+        };
+    </script>
+</body>
+</html>
