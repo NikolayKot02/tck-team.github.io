@@ -24,18 +24,22 @@
 
         /* ФОН ИЗ ТВОИХ ФАЙЛОВ GITHUB */
         body::before {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			/* Используем твой файл Cs.jpeg из репозитория */
-			background-image: url('./Cs.jpeg'); 
-			background-size: cover;
-			background-position: center;
-			opacity: 0.4; /* Прозрачность 40% */
-			z-index: -1;
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Попробуй убрать ./ или добавить, проверь название файла еще раз */
+            background-image: url('Cs.jpeg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #111; /* Если картинки нет, будет этот фон */
+            opacity: 0.6;
+            filter: blur(5px);
+            transform: scale(1.1);
+            z-index: -1;
 		}
 
 
