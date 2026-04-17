@@ -2,77 +2,166 @@
 <html>
 <head>
     <title>TCK-team | Sostav</title>
-    <!-- Подключение шрифта -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://googleapis.com" rel="stylesheet">
     
     <style>
-        body { font-family: 'Roboto', sans-serif; padding: 40px; text-align: center; background-color: #1a1a1a; color: white; }
-        .roster { list-style: none; padding: 0; font-size: 24px; }
-        .roster li { margin: 10px 0; padding: 10px; border-bottom: 1px solid #333; }
-        .back-btn { 
-            margin-top: 30px; 
-            display: inline-block; 
-            color: #aaa; 
-            text-decoration: none; 
-            border: 1px solid #aaa; 
-            padding: 10px 20px; 
-            border-radius: 5px; 
-            cursor: pointer;
-            background: transparent;
-            font-size: 16px;
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            padding: 40px; 
+            background-color: #0a0a0a; /* Очень темный фон как на фото */
+            color: white; 
+            margin: 0;
         }
-        .back-btn:hover { background: #aaa; color: #000; }
+
+        .sostav-title {
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 50px;
+            font-size: 36px;
+        }
+
+        /* Контейнер для карточек (в ряд) */
+        .roster-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Сама карточка игрока */
+        .player-card {
+            background-color: #111; /* Цвет карточки */
+            border: 1px solid #333;
+            width: 200px;
+            padding: 10px;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+            border-color: #00ff00; /* Зеленая подсветка при наведении */
+        }
+
+        /* Заглушка для фото */
+        .player-photo {
+            width: 100%;
+            height: 250px;
+            background-color: #222;
+            background-image: url('placeholder-player.jpg'); /* Сюда вставь путь к фото */
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 15px;
+        }
+
+        .player-role {
+            font-size: 10px;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            border-left: 2px solid #00ff00;
+            padding-left: 5px;
+        }
+
+        .player-name {
+            font-size: 22px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 5px 0;
+        }
+
+        .player-country {
+            font-size: 12px;
+            color: #666;
+            text-align: right;
+            margin-top: -20px;
+        }
+
+        .back-btn { 
+            margin-top: 50px; 
+            display: inline-block; 
+            color: #555; 
+            text-decoration: none; 
+            border: 1px solid #333; 
+            padding: 10px 30px; 
+            border-radius: 2px; 
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .back-btn:hover { color: white; border-color: white; }
     </style>
 </head>
 <body>
 
-    <h1 id="sostav-title" data-key="sostavTitle">Team Roster</h1>
+    <h1 class="sostav-title" data-key="sostavTitle">Tck Team</h1>
 
-    <ul class="roster">
-        <li>👑 Player_1 <span data-key="cap">(Captain)</span></li>
-        <li>🔫 Player_2</li>
-        <li>💣 Player_3</li>
-        <li>🎯 Player_4</li>
-        <li>🔪 Player_5</li>
-    </ul>
+    <div class="roster-container">
+        
+        <!-- Игрок 1 -->
+        <div class="player-card">
+            <div class="player-role">?? / ??</div>
+            <div class="player-photo"></div>
+            <div class="player-name">Player1</div>
+            <div class="player-country">??</div>
+        </div>
+
+        <!-- Игрок 2 -->
+        <div class="player-card">
+            <div class="player-role">?? / ??</div>
+            <div class="player-photo"></div>
+            <div class="player-name">Player2</div>
+            <div class="player-country">??</div>
+        </div>
+
+        <!-- Игрок 3 -->
+        <div class="player-card">
+            <div class="player-role">?? / ??</div>
+            <div class="player-photo"></div>
+            <div class="player-name">Player3</div>
+            <div class="player-country">??</div>
+        </div>
+
+        <!-- Игрок 4 -->
+        <div class="player-card">
+            <div class="player-role">?? / ??</div>
+            <div class="player-photo"></div>
+            <div class="player-name">Player4</div>
+            <div class="player-country">??</div>
+        </div>
+
+        <!-- Игрок 5 -->
+        <div class="player-card">
+            <div class="player-role">?? / ??</div>
+            <div class="player-photo"></div>
+            <div class="player-name">Player5</div>
+            <div class="player-country">??</div>
+        </div>
+
+    </div>
     
-    <!-- Ссылка назад на главную -->
-    <a href="../" class="back-btn" id="back-btn" data-key="backBtn">← Back to Main</a>
+    <br>
+    <a href="../" class="back-btn" data-key="backBtn">← Back to Main</a>
 
     <script>
-        // Объект с переводами для этой страницы
         const translations = {
-            ru: {
-                sostavTitle: "Состав команды",
-                cap: "(Капитан)",
-                backBtn: "← Назад на главную"
-            },
-            en: {
-                sostavTitle: "Team Roster",
-                cap: "(Captain)",
-                backBtn: "← Back to Main"
-            }
+            ru: { sostavTitle: "Состав Tck Team", backBtn: "← Назад на главную" },
+            en: { sostavTitle: "Roster Tck Team", backBtn: "← Back to Main" }
         };
 
         function applyLanguage() {
-            // Читаем сохраненный язык из памяти (тот, что поставили на главной)
-            // Если там ничего нет, ставим английский
             const savedLang = localStorage.getItem('preferredLang') || 'en';
-            
             const elements = document.querySelectorAll('[data-key]');
             elements.forEach(el => {
                 const key = el.getAttribute('data-key');
-                if (translations[savedLang][key]) {
-                    el.textContent = translations[savedLang][key];
-                }
+                if (translations[savedLang][key]) el.textContent = translations[savedLang][key];
             });
-
-            document.documentElement.lang = savedLang;
         }
-
-        // Запускаем перевод сразу при загрузке страницы
         window.onload = applyLanguage;
     </script>
 </body>
