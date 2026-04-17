@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TCK Team</title>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <!-- Подключение шрифта -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+    
     <!-- Твой файл с переводами в GitHub -->
     <script src="lang.js"></script>
     
@@ -22,26 +26,20 @@
             position: relative;
         }
 
-        /* ФОН ИЗ ТВОИХ ФАЙЛОВ GITHUB */
-        body::before {
-            content: "";
+        /* Тот самый фон через класс bg-image */
+        .bg-image {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            /* Попробуй убрать ./ или добавить, проверь название файла еще раз */
-            background-image: url('Cs.jpeg'); 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-color: #111; /* Если картинки нет, будет этот фон */
-            opacity: 0.6;
-            filter: blur(5px);
-            transform: scale(1.1);
-            z-index: -1;
-		}
-
+            object-fit: cover; /* Чтобы фото не сжималось */
+            opacity: 0.4;      /* Прозрачность 40% */
+            filter: blur(5px); /* Размытие */
+            z-index: -1;       /* На задний план */
+            transform: scale(1.1); /* Чтобы не было белых краев при блюре */
+            pointer-events: none;
+        }
 
         .content { 
             flex: 1; 
@@ -74,11 +72,11 @@
         }
 		
 		.teks1 {
-			color: #002aff;
+			color: #002aff; /* Синий цвет для TCK */
 		}
 
         .highlight { 
-            color: #ff0000; 
+            color: #ff0000; /* Красный цвет для Team */
             text-shadow: 0 0 30px rgba(0, 255, 0, 0.5); 
         }
 
@@ -86,8 +84,8 @@
             display: flex; 
             width: 100%; 
             border-top: 1px solid rgba(255,255,255,0.1); 
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
             z-index: 2;
         }
 
@@ -99,11 +97,11 @@
             text-transform: uppercase; 
             font-size: 14px; 
             letter-spacing: 2px; 
+            border: none;
             border-right: 1px solid rgba(255,255,255,0.1); 
             transition: 0.3s; 
             cursor: pointer; 
             background: none; 
-            border: none;
             font-family: 'Roboto', sans-serif;
             font-weight: 700;
         }
@@ -116,11 +114,14 @@
         }
 
         .lang-switch { position: absolute; top: 20px; right: 20px; z-index: 10; }
-        .lang-btn { background: rgba(0,0,0,0.3); border: 1px solid #444; color: #777; padding: 6px 12px; cursor: pointer; margin-left: 5px; border-radius: 2px; font-size: 12px; transition: 0.3s; }
+        .lang-btn { background: rgba(0,0,0,0.5); border: 1px solid #444; color: #777; padding: 6px 12px; cursor: pointer; margin-left: 5px; border-radius: 2px; font-size: 12px; transition: 0.3s; }
         .lang-btn:hover { color: white; border-color: #00ff00; }
     </style>
 </head>
 <body>
+
+    <!-- Фоновая картинка -->
+    <img src="Cs.jpeg" class="bg-image" alt="Background">
 
     <div class="lang-switch">
         <button class="lang-btn" onclick="changeLang('en')">EN</button>
@@ -136,16 +137,18 @@
     </div>
 
     <nav class="bottom-nav">
-        <!-- Убедись, что папка sostav с index.html создана -->
         <button class="nav-item" onclick="window.location.href='sostav/'" data-key="menuSostav">Составы</button>
         <button class="nav-item" data-key="menuMatches">Матчи</button>
         <button class="nav-item" data-key="menuSocial">Соцсети</button>
     </nav>
 
     <script>
+        // Проверка на телефон
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+            window.location.href = 'telephone/';
+        }
 
         function changeLang(lang) {
-            // Проверка, что файл lang.js загрузился
             if (typeof translations !== 'undefined') {
                 const elements = document.querySelectorAll('[data-key]');
                 elements.forEach(el => {
