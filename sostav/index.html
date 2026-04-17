@@ -8,21 +8,29 @@
     <style>
         body { font-family: 'Roboto', sans-serif; padding: 40px; background-color: #0a0a0a; color: white; margin: 0; }
         .sostav-title { font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 50px; font-size: 48px; text-align: left; color: #FF0000; }
-        .roster-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; max-width: 1200px; margin: 0 auto; }
+        
+        /* Контейнер, который выстраивает карточки в ряд */
+        .roster-container { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: flex-start; /* Игроки прижимаются к левому краю */
+            gap: 15px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
         
         .player-card { background-color: #111; border: 1px solid #333; width: 200px; padding: 10px; text-align: left; transition: 0.3s; cursor: pointer; }
         .player-card:hover { transform: translateY(-5px); border-color: #FF0000; }
         .player-photo { width: 100%; height: 250px; background-color: #222; margin-bottom: 15px; overflow: hidden; }
         .player-photo img { width: 100%; height: 100%; object-fit: cover; }
         .player-role { font-size: 10px; color: #888; text-transform: uppercase; margin-bottom: 5px; border-left: 2px solid #ff0000; padding-left: 5px; }
+		.player-name { font-size: 22px; font-weight: 900; text-transform: uppercase; margin: 5px 0; }
         .player-name2 { font-size: 16px; font-weight: 900; text-transform: uppercase; margin: 5px 0; }
         .player-country { font-size: 12px; color: #666; text-align: right; margin-top: -20px; }
 
-        /* Кнопка слева снизу */
         .back-btn { position: fixed; bottom: 20px; left: 20px; z-index: 1001; color: #555; text-decoration: none; border: 1px solid #333; padding: 10px 30px; border-radius: 2px; text-transform: uppercase; font-size: 14px; transition: 0.3s; background: #0a0a0a; }
         .back-btn:hover { color: #FF0000; border-color: #FF0000; }
 
-        /* Модалка */
         .modal { display: none; position: fixed; z-index: 999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
         .modal-content { background: #111; border: 1px solid #333; max-width: 800px; width: 90%; display: flex; position: relative; }
         .modal-img-container { width: 40%; }
@@ -42,14 +50,25 @@
 
     <h1 class="sostav-title" data-lang="sostavTitle">Roster Tck Team</h1>
 
+    <!-- Все игроки должны быть внутри ОДНОГО этого блока -->
     <div class="roster-container">
-        <!-- В функцию showInfo передаем КЛЮЧ перевода 'player_smert_info' -->
+        
+        <!-- Игрок 1 -->
         <div class="player-card" onclick="showInfo('smert_v_loutabe', 'player_smert_info', 'smert_v_loutabe.jpg')">
-            <div class="player-role">Member</div>
+            <div class="player-role">Creator</div>
             <div class="player-photo"><img src="smert_v_loutabe.jpg"></div>
             <div class="player-name2">smert_v_loutabe</div>
             <div class="player-country">UA</div>
         </div>
+
+        <!-- Игрок 2 (Теперь он будет СБОКУ) -->
+        <div class="player-card" onclick="showInfo('Barsic', 'player_2_info', 'barsic.jpg')">
+            <div class="player-role">Skill</div>
+            <div class="player-photo"><img src="barsic.jpg"></div>
+            <div class="player-name">Barsic</div>
+            <div class="player-country">UA</div>
+        </div>
+
     </div>
 
     <div id="infoModal" class="modal" onclick="closeInfo()">
@@ -69,7 +88,6 @@
     <script>
         function showInfo(name, infoKey, imgPath) {
             document.getElementById('infoName').innerText = name;
-            // Ищем перевод по ключу через функцию из lang.js
             document.getElementById('infoText').innerText = typeof getTranslation === "function" ? getTranslation(infoKey) : infoKey;
             document.getElementById('modalImg').src = imgPath || '';
             document.getElementById('infoModal').style.display = 'flex';
@@ -79,7 +97,6 @@
         
         window.onkeydown = (e) => { if (e.key === "Escape") closeInfo(); };
 
-        // Автоматический перевод при загрузке страниц
         window.onload = function() {
             if (typeof updateLanguage === "function") {
                 updateLanguage();
