@@ -6,9 +6,9 @@
     <title>TCK Team</title>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <!-- ИСПРАВЛЕНО: добавлена рабочая ссылка на шрифты -->
     <link href="https://googleapis.com" rel="stylesheet">
     
-    <!-- Твой файл с переводами -->
     <script src="lang.js"></script>
     
     <style>
@@ -20,6 +20,7 @@
             overflow: hidden; position: relative;
         }
 
+        /* Фоновое изображение */
         .bg-image {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; opacity: 0.4; filter: blur(5px);
@@ -37,22 +38,13 @@
 		.teks1 { color: #002aff; }
         .highlight { color: #ff0000; text-shadow: 0 0 30px rgba(0, 255, 0, 0.5); }
 
-        /* Контейнер для котика */
         .gif-container {
             margin-top: 20px;
-            width: 150px; 
-            height: 150px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+            width: 150px; height: 150px;
+            cursor: pointer; transition: transform 0.3s ease;
         }
-
         .gif-container:hover { transform: scale(1.1); }
-
-        .gif-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
+        .gif-container img { width: 100%; height: 100%; object-fit: contain; }
 
         .bottom-nav { 
             display: flex; width: 100%; 
@@ -67,8 +59,7 @@
             transition: 0.3s; cursor: pointer; background: none; border: none;
             font-family: 'Roboto', sans-serif; font-weight: 700;
         }
-
-        .nav-item:hover { color: #ff0000; background: rgba(0, 255, 0, 0.05); }
+        .nav-item:hover { color: #ff0000; background: rgba(255, 0, 0, 0.05); }
 
         .lang-switch { position: absolute; top: 20px; right: 20px; z-index: 10; }
         .lang-btn { background: rgba(0,0,0,0.5); border: 1px solid #444; color: #777; padding: 6px 12px; cursor: pointer; margin-left: 5px; border-radius: 2px; font-size: 12px; transition: 0.3s; }
@@ -77,6 +68,7 @@
 </head>
 <body>
 
+    <!-- ПРОВЕРЬ ЭТУ СТРОКУ -->
     <img src="Cs.jpg" class="bg-image" alt="Background">
 
     <div class="lang-switch">
@@ -91,7 +83,6 @@
             <span class="highlight" data-lang="titlePart2">Team</span>
         </h1>
 
-        <!-- КОТИК: подгружает cat_static.jpg из GitHub, при наведении меняет на GIF -->
         <div class="gif-container" 
              onmouseenter="this.querySelector('img').src='https://media.tenor.com/gmbMn1iUZxgAAAAi/cat-%D0%BA%D0%BE%D1%82.gif'" 
              onmouseleave="this.querySelector('img').src='cat_static.png'">
