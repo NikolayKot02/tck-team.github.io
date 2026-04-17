@@ -6,41 +6,45 @@
     <title>TCK Team</title>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <!-- ИСПРАВЛЕНО: добавлена рабочая ссылка на шрифты -->
     <link href="https://googleapis.com" rel="stylesheet">
     
     <script src="lang.js"></script>
     
     <style>
+        /* 1. САМЫЙ НИЖНИЙ СЛОЙ - ЧЕРНЫЙ ФОН */
         body, html { 
             margin: 0; padding: 0; height: 100%; 
-            /* Убираем background-color: #000; отсюда */
+            background-color: #000; /* Чистый черный */
             color: white; 
             font-family: 'Roboto', sans-serif; 
             display: flex; flex-direction: column; 
             overflow: hidden; position: relative;
         }
 
+        /* 2. СЛОЙ ПОВЕРХ ЧЕРНОГО - КАРТИНКА */
         .bg-image {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; 
-            opacity: 0.5; /* Сделал чуть ярче, чтобы точно заметить */
+            opacity: 0.3; /* Прозрачность 30%, чтобы черный фон просвечивал */
             filter: blur(5px);
-            z-index: 0; /* Подняли чуть выше */
-            transform: scale(1.1); pointer-events: none;
-            background-color: #000; /* Черный цвет теперь под картинкой */
+            z-index: 1; /* Слой номер 1 */
+            transform: scale(1.1); 
+            pointer-events: none;
         }
-		
+
+        /* 3. СЛОЙ ПОВЕРХ ВСЕГО - КОНТЕНТ */
         .content { 
             flex: 1; display: flex; flex-direction: column; 
-            justify-content: center; align-items: center; z-index: 1;
+            justify-content: center; align-items: center; 
+            z-index: 10; /* Слой номер 10 (выше картинки) */
+            position: relative;
         }
 
         .main-title { text-align: center; text-transform: uppercase; line-height: 0.85; user-select: none; }
         .main-title span { display: block; font-size: clamp(60px, 15vw, 120px); letter-spacing: -2px; }
 		
 		.teks1 { color: #002aff; }
-        .highlight { color: #ff0000; text-shadow: 0 0 30px rgba(0, 255, 0, 0.5); }
+        .highlight { color: #ff0000; text-shadow: 0 0 30px rgba(255, 0, 0, 0.5); }
 
         .gif-container {
             margin-top: 20px;
@@ -54,7 +58,8 @@
             display: flex; width: 100%; 
             border-top: 1px solid rgba(255,255,255,0.1); 
             background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px); z-index: 2;
+            backdrop-filter: blur(10px); 
+            z-index: 20; /* Еще выше контента */
         }
 
         .nav-item { 
@@ -65,22 +70,24 @@
         }
         .nav-item:hover { color: #ff0000; background: rgba(255, 0, 0, 0.05); }
 
-        .lang-switch { position: absolute; top: 20px; right: 20px; z-index: 10; }
+        .lang-switch { position: absolute; top: 20px; right: 20px; z-index: 30; }
         .lang-btn { background: rgba(0,0,0,0.5); border: 1px solid #444; color: #777; padding: 6px 12px; cursor: pointer; margin-left: 5px; border-radius: 2px; font-size: 12px; transition: 0.3s; }
-        .lang-btn:hover { color: #0000FF; border-color: #ff0000; }
+        .lang-btn:hover { color: #fff; border-color: #ff0000; }
     </style>
 </head>
 <body>
 
-    <!-- ПРОВЕРЬ ЭТУ СТРОКУ -->
+    <!-- Фон (Слой 1) -->
     <img src="Cs.jpg" class="bg-image" alt="Background">
 
+    <!-- Интерфейс (Слой 30) -->
     <div class="lang-switch">
         <button class="lang-btn" onclick="changeLang('en')">EN</button>
         <button class="lang-btn" onclick="changeLang('ru')">RU</button>
         <button class="lang-btn" onclick="changeLang('ua')">UA</button>
     </div>
 
+    <!-- Контент (Слой 10) -->
     <div class="content">
         <h1 class="main-title">
             <span class="teks1" data-lang="titlePart1">TCK</span>
@@ -88,12 +95,13 @@
         </h1>
 
         <div class="gif-container" 
-             onmouseenter="this.querySelector('img').src='https://media.tenor.com/gmbMn1iUZxgAAAAi/cat-%D0%BA%D0%BE%D1%82.gif'" 
+             onmouseenter="this.querySelector('img').src='https://tenor.com'" 
              onmouseleave="this.querySelector('img').src='cat_static.png'">
             <img src="cat_static.png" alt="Cat Sticker">
         </div>
     </div>
 
+    <!-- Меню (Слой 20) -->
     <nav class="bottom-nav">
         <button class="nav-item" onclick="window.location.href='sostav/'" data-lang="menuSostav">Составы</button>
         <button class="nav-item" onclick="window.location.href='matches/'" data-lang="menuMatches">Матчи</button>
