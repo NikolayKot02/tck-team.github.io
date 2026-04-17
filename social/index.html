@@ -7,116 +7,58 @@
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            background-color: #000;
-            overflow: hidden; /* Убираем лишнюю прокрутку */
-        }
+    
+    <!-- Подключаем твой скрипт перевода -->
+    <script src="lang.js"></script>
 
-        body {
-            color: white;
-            font-family: 'Roboto', sans-serif;
-            display: flex;
-            justify-content: center; /* Центр сетки по горизонтали */
-            align-items: center;     /* Центр сетки по вертикали */
-            position: relative;
-            padding: 20px;
-        }
+    <style>
+        body, html { height: 100%; margin: 0; background-color: #000; overflow: hidden; }
+        body { color: white; font-family: 'Roboto', sans-serif; display: flex; justify-content: center; align-items: center; position: relative; padding: 20px; }
 
         /* ЗАГОЛОВОК СВЕРХУ СЛЕВА */
         .header {
-            position: absolute;
-            top: 40px;
-            left: 40px;
-            color: #00ff00;
-            font-size: 48px;
-            text-transform: uppercase;
-            font-weight: 900;
-            letter-spacing: 2px;
-            margin: 0;
+            position: absolute; top: 40px; left: 40px;
+            color: #FF0000; font-size: 48px; text-transform: uppercase;
+            font-weight: 900; letter-spacing: 2px; margin: 0;
         }
 
         .social-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1px;
-            background-color: #1a1a1a;
-            border: 1px solid #1a1a1a;
-            width: 100%;
-            max-width: 900px;
-            z-index: 1;
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 1px; background-color: #1a1a1a; border: 1px solid #1a1a1a;
+            width: 100%; max-width: 900px; z-index: 1;
         }
 
         .social-item {
-            background-color: #000;
-            padding: 60px 40px;
-            text-decoration: none;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
+            background-color: #000; padding: 60px 40px;
+            text-decoration: none; color: white;
+            display: flex; flex-direction: column; transition: all 0.3s ease;
         }
 
-        .social-label {
-            font-size: 10px;
-            color: #444;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
+        .social-label { font-size: 10px; color: #444; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
+        .social-name { font-size: 24px; font-weight: 900; text-transform: uppercase; }
 
-        .social-name {
-            font-size: 24px;
-            font-weight: 900;
-            text-transform: uppercase;
-        }
-
-        /* Цвета наводки фона и текста */
+        /* Эффекты наведения */
         .instagram:hover { background-color: rgba(225, 48, 108, 0.2); }
-        .instagram:hover .social-name { color: #e1306c; }
-
+        .instagram:hover .social-name { color: #9146ff; }
         .youtube:hover { background-color: rgba(255, 0, 0, 0.2); }
         .youtube:hover .social-name { color: #ff0000; }
-
         .discord:hover { background-color: rgba(114, 137, 218, 0.2); }
         .discord:hover .social-name { color: #7289da; }
-
         .tiktok:hover { background-color: rgba(37, 244, 238, 0.2); }
         .tiktok:hover .social-name { color: #25f4ee; }
 
-        /* Кнопка назад снизу слева или просто под сеткой */
+        /* Кнопка ВЫХОД в левом нижнем углу */
         .back-btn {
-            position: absolute;
-            bottom: 40px;
-            left: 40px;
-            color: #333;
-            text-decoration: none;
-            border: 1px solid #222;
-            padding: 10px 30px;
-            text-transform: uppercase;
-            font-size: 12px;
-            transition: 0.3s;
+            position: fixed; bottom: 40px; left: 40px;
+            color: #333; text-decoration: none; border: 1px solid #222;
+            padding: 10px 30px; text-transform: uppercase;
+            font-size: 12px; transition: 0.3s; background: #000; z-index: 10;
         }
-        .back-btn:hover { color: #00ff00; border-color: #00ff00; }
+        .back-btn:hover { color: #ffff00; border-color: #ffff00; }
 
-        /* Для мобилок заголовок может мешать, поэтому на маленьких экранах возвращаем в поток */
         @media (max-width: 768px) {
-            body {
-                flex-direction: column;
-                justify-content: flex-start;
-                padding-top: 100px;
-                overflow: auto;
-            }
-            .header {
-                position: static;
-                margin-bottom: 30px;
-                font-size: 32px;
-                text-align: left;
-                width: 100%;
-                max-width: 900px;
-            }
+            body { flex-direction: column; justify-content: flex-start; padding-top: 100px; overflow: auto; }
+            .header { position: static; margin-bottom: 30px; font-size: 32px; text-align: left; width: 100%; }
             .social-grid { grid-template-columns: 1fr; }
             .back-btn { position: static; margin-top: 30px; align-self: flex-start; }
         }
@@ -124,28 +66,38 @@
 </head>
 <body>
 
-    <div class="header">FOLLOW US</div>
+    <div class="header" data-lang="followTitle">FOLLOW US</div>
 
     <div class="social-grid">
-        <a href="#" target="_blank" class="social-item instagram">
-            <span class="social-label">Instagram</span>
-            <span class="social-name">@??</span>
+        <!-- ВСТАВЬ СВОИ ССЫЛКИ ВМЕСТО # -->
+        <a href="https://www.twitch.tv/tck_team_cs2" target="_blank" class="social-item instagram">
+            <span class="social-label" data-lang="instaLabel">Twitch</span>
+            <span class="social-name">@TCK_TEAM</span>
         </a>
-        <a href="#" target="_blank" class="social-item youtube">
-            <span class="social-label">YouTube</span>
-            <span class="social-name">??</span>
+        <a href="http://www.youtube.com/@TCKteam" target="_blank" class="social-item youtube">
+            <span class="social-label" data-lang="ytLabel">YouTube</span>
+            <span class="social-name">TCK TEAM TV</span>
         </a>
-        <a href="#" target="_blank" class="social-item discord">
-            <span class="social-label">Discord</span>
-            <span class="social-name">??</span>
+        <a href="https://discord.gg/VWakF87jZ2" target="_blank" class="social-item discord">
+            <span class="social-label" data-lang="dsLabel">Discord</span>
+            <span class="social-name">TCK Team</span>
         </a>
-        <a href="#" target="_blank" class="social-item tiktok">
-            <span class="social-label">TikTok</span>
-            <span class="social-name">@??</span>
+        <a href="https://www.tiktok.com/@tck_team_cs?is_from_webapp=1&sender_device=pc" target="_blank" class="social-item tiktok">
+            <span class="social-label" data-lang="ttLabel">TikTok</span>
+            <span class="social-name">@tck_team_cs</span>
         </a>
     </div>
 
-    <a href="../" class="back-btn">← Back to Main</a>
+    <!-- Кнопка назад с поддержкой перевода -->
+    <a href="../" class="back-btn" data-lang="backBtn">← Back to Main</a>
 
+    <script>
+        // Инициализация перевода при загрузке
+        window.onload = function() {
+            if (typeof updateLanguage === 'function') {
+                updateLanguage();
+            }
+        };
+    </script>
 </body>
 </html>
