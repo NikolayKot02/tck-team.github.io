@@ -79,7 +79,7 @@
         
         window.onkeydown = (e) => { if (e.key === "Escape") closeInfo(); };
 
-        // Автоматический перевод при загрузке страницы
+        // Автоматический перевод при загрузке страниц
         window.onload = function() {
             if (typeof updateLanguage === "function") {
                 updateLanguage();
