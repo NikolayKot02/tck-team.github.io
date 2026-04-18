@@ -7,12 +7,13 @@
     <link rel="icon" type="image/png" href="../Logo_TCK.png">
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
     
     <script src="../lang.js"></script>
 
     <style>
-        body { background-color: #000; color: white; font-family: 'Roboto', sans-serif; margin: 0; padding: 40px; }
+        body { background-color: #000; color: white; font-family: 'Roboto', sans-serif; margin: 0; padding: 40px; box-sizing: border-box; }
+        
         .header { color: #FF0000; font-size: 36px; text-transform: uppercase; font-weight: 900; margin-bottom: 40px; }
 
         .match-list { display: flex; flex-direction: column; width: 100%; }
@@ -22,7 +23,6 @@
             cursor: pointer; transition: 0.3s; 
         }
 
-        /* Цвета счета и свечения */
         .win { color: #00ff00; }
         .lose { color: #ff0000; }
         .draw { color: #ffff00; }
@@ -52,13 +52,10 @@
             transform: translateY(-100vh); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1); 
         }
 
-        /* Цвета модалки */
         .modal.is-win .modal-content { border-color: #00ff00; box-shadow: 0 0 30px rgba(0, 255, 0, 0.3); }
         .modal.is-win .rounds-info { color: #00ff00; }
-
         .modal.is-lose .modal-content { border-color: #ff0000; box-shadow: 0 0 30px rgba(255, 0, 0, 0.3); }
         .modal.is-lose .rounds-info { color: #ff0000; }
-
         .modal.is-draw .modal-content { border-color: #ffff00; box-shadow: 0 0 30px rgba(255, 255, 0, 0.3); }
         .modal.is-draw .rounds-info { color: #ffff00; }
 
@@ -78,8 +75,38 @@
         .yt-link:hover { background: #fff; color: #000; }
 
         .close-btn { position: absolute; top: 15px; right: 20px; cursor: pointer; color: #555; font-size: 28px; }
-        .back-btn { position: fixed; bottom: 20px; left: 20px; z-index: 1001; color: #555; text-decoration: none; border: 1px solid #333; padding: 10px 30px; border-radius: 2px; text-transform: uppercase; font-size: 11px; background: #000; transition: 0.3s; }
+        
+        /* Кнопка назад */
+        .back-btn { 
+            position: fixed; bottom: 20px; left: 20px; z-index: 1001; 
+            color: #555; text-decoration: none; border: 1px solid #333; 
+            padding: 10px 30px; border-radius: 2px; text-transform: uppercase; 
+            font-size: 11px; background: #000; transition: 0.3s; 
+        }
         .back-btn:hover { color: #FF0000; border-color: #FF0000; }
+
+        /* АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ */
+        @media (max-width: 768px) {
+            body { padding: 20px; padding-bottom: 80px; }
+            .header { font-size: 28px; text-align: center; margin-bottom: 25px; }
+            
+            .our-team, .enemy-team { font-size: 14px; }
+            .score { font-size: 16px; }
+            .vs { width: 30px; font-size: 10px; }
+            
+            .match-item { padding: 15px 10px; }
+
+            .modal-content { padding: 30px 20px; }
+            .modal-title { font-size: 22px; }
+            .rounds-info { font-size: 40px; }
+
+            .back-btn { 
+                left: 10px; right: 10px; bottom: 10px; 
+                text-align: center; padding: 15px; 
+                background: rgba(10, 10, 10, 0.95);
+                border-color: #444;
+            }
+        }
     </style>
 </head>
 <body>
@@ -87,7 +114,6 @@
     <div class="header" data-lang="menuMatches">Match History</div>
 
     <div class="match-list">
-        <!-- Пример 1 (Победа) -->
         <div class="match-item" onclick="openMatch(this, '??', 'https://youtube.com')">
             <div class="teams-box">
                 <span class="our-team">TCK</span> <span class="vs">vs</span> <span class="enemy-team">??</span>
@@ -95,7 +121,6 @@
             <div class="score win">?:?</div>
         </div>
 
-        <!-- Пример 2 (Проигрыш) -->
         <div class="match-item" onclick="openMatch(this, '??', 'https://youtube.com')">
             <div class="teams-box">
                 <span class="our-team">TCK</span> <span class="vs">vs</span> <span class="enemy-team">??</span>
@@ -103,7 +128,6 @@
             <div class="score lose">?:?</div>
         </div>
 
-        <!-- Пример 3 (Ничья/Желтый) -->
         <div class="match-item" onclick="openMatch(this, '??', 'https://youtube.com')">
             <div class="teams-box">
                 <span class="our-team">TCK</span> <span class="vs">vs</span> <span class="enemy-team">??</span>
@@ -112,7 +136,6 @@
         </div>
     </div>
 
-    <!-- МОДАЛЬНОЕ ОКНО С ПОДДЕРЖКОЙ ПЕРЕВОДА -->
     <div id="matchModal" class="modal" onclick="closeMatch()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <span class="close-btn" onclick="closeMatch()">&times;</span>
@@ -142,7 +165,6 @@
             if (scoreClass.contains('draw')) modal.classList.add('is-draw');
 
             modal.style.display = 'flex';
-            // Вызываем перевод для новых элементов в модалке
             if (typeof updateLanguage === 'function') updateLanguage();
             
             setTimeout(() => { modal.classList.add('active'); }, 10);
