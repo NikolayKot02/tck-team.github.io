@@ -15,24 +15,28 @@
         
         .roster-container { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 15px; max-width: 1200px; margin: 0 auto; }
         
-        /* СТАНДАРТНАЯ КАРТОЧКА (Смерть в лоутабе) */
+        /* ОБЩАЯ КАРТОЧКА */
         .player-card { 
             background-color: #111; border: 1px solid #333; width: 200px; 
             padding: 10px; text-align: left; transition: 0.3s; cursor: pointer; 
         }
 
-        /* КРАСНЫЙ ГЛОВ (Смерть в лоутабе) */
+        /* КРАСНЫЙ ХОВЕР (Смерть в лоутабе) */
         .player-card:hover { 
             transform: translateY(-5px); 
             border-color: #FF0000; 
             box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), inset 0 0 10px rgba(255, 0, 0, 0.2); 
         }
+        /* ИСПРАВЛЕНО: Теперь ник smert_v_loutabe тоже краснеет */
+        .player-card:hover .player-name2 { color: #FF0000; }
 
-        /* СИНИЙ ГЛОВ (Барсик) */
+        /* СИНИЙ ХОВЕР (Барсик) */
         .player-card.blue-hover:hover { 
             border-color: #002aff; 
             box-shadow: 0 0 20px rgba(0, 42, 255, 0.6), inset 0 0 10px rgba(0, 42, 255, 0.2); 
         }
+        /* Ник Барсика синеет */
+        .player-card.blue-hover:hover .player-name { color: #002aff; }
 
         .player-photo { width: 100%; height: 250px; background-color: #222; margin-bottom: 15px; overflow: hidden; }
         .player-photo img { width: 100%; height: 100%; object-fit: cover; }
@@ -42,16 +46,13 @@
 
         .player-name { font-size: 22px; font-weight: 900; text-transform: uppercase; margin: 5px 0; transition: 0.3s; }
         .player-name2 { font-size: 16px; font-weight: 900; text-transform: uppercase; margin: 5px 0; transition: 0.3s; }
-        
-        /* Изменение цвета текста Барсика при наведении */
-        .player-card.blue-hover:hover .player-name { color: #002aff; }
 
         .player-country { font-size: 12px; color: #666; text-align: right; margin-top: -20px; }
 
         .back-btn { position: fixed; bottom: 20px; left: 20px; z-index: 1001; color: #555; text-decoration: none; border: 1px solid #333; padding: 10px 30px; border-radius: 2px; text-transform: uppercase; font-size: 14px; transition: 0.3s; background: #0a0a0a; }
         .back-btn:hover { color: #FF0000; border-color: #FF0000; }
 
-        /* --- МОДАЛЬНОЕ ОКНО --- */
+        /* МОДАЛЬНОЕ ОКНО */
         .modal { 
             display: none; position: fixed; z-index: 999; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(0,0,0,0); justify-content: center; align-items: center; 
@@ -69,7 +70,6 @@
         .modal.active .modal-content { transform: translateY(0); }
         .modal.closing .modal-content { transform: translateY(100vh); }
 
-        /* Синий стиль окна для Барсика */
         .modal.is-blue .modal-content { border-color: #002aff; box-shadow: 0 0 30px rgba(0, 42, 255, 0.5); }
         .modal.is-blue .modal-name { color: #002aff; }
 
@@ -88,7 +88,7 @@
     <h1 class="sostav-title" data-lang="sostavTitle">Roster Tck Team</h1>
 
     <div class="roster-container">
-        <!-- Смерть в лоутабе (Красный глов) -->
+        <!-- Смерть в лоутабе -->
         <div class="player-card" onclick="showInfo('smert_v_loutabe', 'player_smert_info', 'smert_v_loutabe.jpg', false)">
             <div class="player-role">Creator</div>
             <div class="player-photo"><img src="smert_v_loutabe.jpg"></div>
@@ -96,7 +96,7 @@
             <div class="player-country">UA</div>
         </div>
 
-        <!-- Барсик (Синий глов) -->
+        <!-- Барсик -->
         <div class="player-card blue-hover" onclick="showInfo('Barsic', 'player_2_info', 'barsic.jpg', true)">
             <div class="player-role2">Skill</div>
             <div class="player-photo"><img src="barsic.jpg"></div>
