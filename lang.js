@@ -25,6 +25,7 @@ const translations = {
         thankTitle: "Спасибо",
         chell_1_info: "Сделал сайт и играет в кс 2.",
         chell_2_info: "Тоже создатель TCK Team. Гл. менеджер.",
+        chell_3_info:"Моральная поддержка. Идеи для сайта.",
         menuthank:"Спасибо за помощь"
     },
     en: {
@@ -53,6 +54,7 @@ const translations = {
         thankTitle: "Thank",
         chell_1_info: "Made a website and plays CS 2.",
         chell_2_info: "Also the creator of TCK Team. Chief manager.",
+        chell_3_info:"Moral support. Website ideas.",
         menuthank:"Thanks for help"
     },
     ua: {
@@ -81,6 +83,7 @@ const translations = {
         thankTitle: "Дякую",
         chell_1_info: "Зробив сайт та грає в кс 2.",
         chell_2_info: "Теж творець TCK Team. Гол. менеджер.",
+        chell_3_info:"Моральна підтримка. Ідеї ​​для сайту.",
         menuthank:"Дякую за допомогу"
     }
 };
