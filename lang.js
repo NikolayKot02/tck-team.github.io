@@ -24,7 +24,8 @@ const translations = {
         chell_1_info: "Сделал сайт и играет в кс.",
         thankTitle: "Спасибо",
         chell_1_info: "Сделал сайт и играет в кс 2.",
-        chell_2_info: "Тоже создатель TCK Team. Гл. менеджер."
+        chell_2_info: "Тоже создатель TCK Team. Гл. менеджер.",
+        menuthank:"Спасибо за помощь"
     },
     en: {
         titlePart1: "TCK",
@@ -51,7 +52,8 @@ const translations = {
         chell_2_info: "Also creator of TCK Team. Head Manager.",
         thankTitle: "Thank",
         chell_1_info: "Made a website and plays CS 2.",
-        chell_2_info: "Also the creator of TCK Team. Chief manager."
+        chell_2_info: "Also the creator of TCK Team. Chief manager.",
+        menuthank:"Thanks for help"
     },
     ua: {
         titlePart1: "TCK",
@@ -78,7 +80,8 @@ const translations = {
         chell_2_info: "Теж створив TCK Team. Гол. менеджер.",
         thankTitle: "Дякую",
         chell_1_info: "Зробив сайт та грає в кс 2.",
-        chell_2_info: "Теж творець TCK Team. Гол. менеджер."
+        chell_2_info: "Теж творець TCK Team. Гол. менеджер.",
+        menuthank:"Дякую за допомогу"
     }
 };
 
