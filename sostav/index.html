@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>TCK-team | Sostav</title>
 
-    <!-- ИКОНКА НА ВКЛАДКЕ БРАУЗЕРА (Favicon) -->
+    <!-- ИКОНКА НА ВКЛАДКЕ БРАУЗЕРА -->
     <link rel="icon" type="image/png" href="../Logo_TCK.png">
 
     <link rel="preconnect" href="https://googleapis.com">
@@ -13,41 +13,74 @@
         body { font-family: 'Roboto', sans-serif; padding: 40px; background-color: #0a0a0a; color: white; margin: 0; }
         .sostav-title { font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 50px; font-size: 48px; text-align: left; color: #FF0000; }
         
-        /* Контейнер, который выстраивает карточки в ряд */
-        .roster-container { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: flex-start; /* Игроки прижимаются к левому краю */
-            gap: 15px; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-        }
+        .roster-container { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 15px; max-width: 1200px; margin: 0 auto; }
         
-        .player-card { background-color: #111; border: 1px solid #333; width: 200px; padding: 10px; text-align: left; transition: 0.3s; cursor: pointer; }
-        .player-card:hover { transform: translateY(-5px); border-color: #FF0000; }
+        /* СТАНДАРТНАЯ КАРТОЧКА (Смерть в лоутабе) */
+        .player-card { 
+            background-color: #111; border: 1px solid #333; width: 200px; 
+            padding: 10px; text-align: left; transition: 0.3s; cursor: pointer; 
+        }
+
+        /* КРАСНЫЙ ГЛОВ (Смерть в лоутабе) */
+        .player-card:hover { 
+            transform: translateY(-5px); 
+            border-color: #FF0000; 
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), inset 0 0 10px rgba(255, 0, 0, 0.2); 
+        }
+
+        /* СИНИЙ ГЛОВ (Барсик) */
+        .player-card.blue-hover:hover { 
+            border-color: #002aff; 
+            box-shadow: 0 0 20px rgba(0, 42, 255, 0.6), inset 0 0 10px rgba(0, 42, 255, 0.2); 
+        }
+
         .player-photo { width: 100%; height: 250px; background-color: #222; margin-bottom: 15px; overflow: hidden; }
         .player-photo img { width: 100%; height: 100%; object-fit: cover; }
-        .player-role { font-size: 10px; color: #888; text-transform: uppercase; margin-bottom: 5px; border-left: 2px solid #ff0000; padding-left: 5px; }
-		.player-name { font-size: 22px; font-weight: 900; text-transform: uppercase; margin: 5px 0; }
-        .player-name2 { font-size: 16px; font-weight: 900; text-transform: uppercase; margin: 5px 0; }
+        
+        .player-role { font-size: 10px; color: #888; text-transform: uppercase; margin-bottom: 5px; border-left: 2px solid #ff0000; padding-left: 5px; transition: 0.3s; }
+        .player-role2 { font-size: 10px; color: #888; text-transform: uppercase; margin-bottom: 5px; border-left: 2px solid #002aff; padding-left: 5px; transition: 0.3s; }
+
+        .player-name { font-size: 22px; font-weight: 900; text-transform: uppercase; margin: 5px 0; transition: 0.3s; }
+        .player-name2 { font-size: 16px; font-weight: 900; text-transform: uppercase; margin: 5px 0; transition: 0.3s; }
+        
+        /* Изменение цвета текста Барсика при наведении */
+        .player-card.blue-hover:hover .player-name { color: #002aff; }
+
         .player-country { font-size: 12px; color: #666; text-align: right; margin-top: -20px; }
 
         .back-btn { position: fixed; bottom: 20px; left: 20px; z-index: 1001; color: #555; text-decoration: none; border: 1px solid #333; padding: 10px 30px; border-radius: 2px; text-transform: uppercase; font-size: 14px; transition: 0.3s; background: #0a0a0a; }
         .back-btn:hover { color: #FF0000; border-color: #FF0000; }
 
-        .modal { display: none; position: fixed; z-index: 999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
-        .modal-content { background: #111; border: 1px solid #333; max-width: 800px; width: 90%; display: flex; position: relative; }
+        /* --- МОДАЛЬНОЕ ОКНО --- */
+        .modal { 
+            display: none; position: fixed; z-index: 999; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0); justify-content: center; align-items: center; 
+            transition: background 0.4s ease;
+        }
+        .modal.active { background: rgba(0,0,0,0.9); }
+
+        .modal-content { 
+            background: #111; border: 1px solid #FF0000; 
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.4); 
+            max-width: 800px; width: 90%; display: flex; position: relative; 
+            transform: translateY(-100vh); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1); 
+        }
+
+        .modal.active .modal-content { transform: translateY(0); }
+        .modal.closing .modal-content { transform: translateY(100vh); }
+
+        /* Синий стиль окна для Барсика */
+        .modal.is-blue .modal-content { border-color: #002aff; box-shadow: 0 0 30px rgba(0, 42, 255, 0.5); }
+        .modal.is-blue .modal-name { color: #002aff; }
+
+        .modal-name { color: #FF0000; font-size: 42px; font-weight: 900; margin: 0 0 10px 0; text-transform: uppercase; }
         .modal-img-container { width: 40%; }
         .modal-img-container img { width: 100%; height: 100%; object-fit: cover; }
         .modal-text-container { width: 60%; padding: 40px; }
-        .close-btn { position: absolute; top: 15px; right: 20px; cursor: pointer; color: #555; font-size: 28px; }
-        .modal-name { color: #FF0000; font-size: 42px; font-weight: 900; margin: 0 0 10px 0; text-transform: uppercase; }
+        .close-btn { position: absolute; top: 15px; right: 20px; cursor: pointer; color: #555; font-size: 28px; z-index: 10; }
         .modal-info { color: #ccc; line-height: 1.6; }
 
-        @media (max-width: 600px) {
-            .modal-content { flex-direction: column; }
-            .modal-img-container, .modal-text-container { width: 100%; }
-        }
+        @media (max-width: 600px) { .modal-content { flex-direction: column; } .modal-img-container, .modal-text-container { width: 100%; } }
     </style>
 </head>
 <body>
@@ -55,21 +88,21 @@
     <h1 class="sostav-title" data-lang="sostavTitle">Roster Tck Team</h1>
 
     <div class="roster-container">
-        
-        <div class="player-card" onclick="showInfo('smert_v_loutabe', 'player_smert_info', 'smert_v_loutabe.jpg')">
+        <!-- Смерть в лоутабе (Красный глов) -->
+        <div class="player-card" onclick="showInfo('smert_v_loutabe', 'player_smert_info', 'smert_v_loutabe.jpg', false)">
             <div class="player-role">Creator</div>
             <div class="player-photo"><img src="smert_v_loutabe.jpg"></div>
             <div class="player-name2">smert_v_loutabe</div>
             <div class="player-country">UA</div>
         </div>
 
-        <div class="player-card" onclick="showInfo('Barsic', 'player_2_info', 'barsic.jpg')">
-            <div class="player-role">Skill</div>
+        <!-- Барсик (Синий глов) -->
+        <div class="player-card blue-hover" onclick="showInfo('Barsic', 'player_2_info', 'barsic.jpg', true)">
+            <div class="player-role2">Skill</div>
             <div class="player-photo"><img src="barsic.jpg"></div>
             <div class="player-name">Barsic</div>
             <div class="player-country">UA</div>
         </div>
-
     </div>
 
     <div id="infoModal" class="modal" onclick="closeInfo()">
@@ -87,22 +120,31 @@
 
     <script src="../lang.js"></script>
     <script>
-        function showInfo(name, infoKey, imgPath) {
+        function showInfo(name, infoKey, imgPath, isBlue) {
+            const modal = document.getElementById('infoModal');
             document.getElementById('infoName').innerText = name;
             document.getElementById('infoText').innerText = typeof getTranslation === "function" ? getTranslation(infoKey) : infoKey;
             document.getElementById('modalImg').src = imgPath || '';
-            document.getElementById('infoModal').style.display = 'flex';
+            
+            if (isBlue) modal.classList.add('is-blue');
+            else modal.classList.remove('is-blue');
+
+            modal.style.display = 'flex';
+            setTimeout(() => { modal.classList.add('active'); }, 10);
         }
 
-        function closeInfo() { document.getElementById('infoModal').style.display = 'none'; }
+        function closeInfo() { 
+            const modal = document.getElementById('infoModal');
+            modal.classList.remove('active');
+            modal.classList.add('closing');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                modal.classList.remove('closing');
+            }, 500);
+        }
         
         window.onkeydown = (e) => { if (e.key === "Escape") closeInfo(); };
-
-        window.onload = function() {
-            if (typeof updateLanguage === "function") {
-                updateLanguage();
-            }
-        };
+        window.onload = function() { if (typeof updateLanguage === "function") updateLanguage(); };
     </script>
 </body>
 </html>
