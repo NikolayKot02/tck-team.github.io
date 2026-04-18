@@ -13,7 +13,7 @@ const translations = {
         statMatches: "Матчи",
         
         // Бегущая строка
-        runningText: "Добро пожаловать на официальный сайт TCK Team! Следите за обновлениями.",
+        runningText: "Добро пожаловать на официальный сайт TCK Team! Следите за новостями в соцсетях.",
 
         // Страница состава
         sostavTitle: "Состав команды",
@@ -43,7 +43,7 @@ const translations = {
         statLosses: "Losses",
         statMatches: "Matches",
 
-        runningText: "Welcome to the official TCK Team website! Stay tuned for updates.",
+        runningText: "Welcome to the official TCK Team website! Follow us on social for updates.",
 
         sostavTitle: "Team Roster",
         cap: "(Captain)",
@@ -70,7 +70,7 @@ const translations = {
         statLosses: "Поразки",
         statMatches: "Матчі",
 
-        runningText: "Ласкаво просимо на офіційний сайт TCK Team! Слідкуйте за оновленнями.",
+        runningText: "Ласкаво просимо до офіційного сайту TCK Team! Слідкуйте за новинами у соцмережах.",
 
         sostavTitle: "Склад команди",
         cap: "(Капітан)",
