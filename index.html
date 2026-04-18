@@ -4,13 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TCK Team</title>
-
-    <!-- МЕТАТЕГИ ДЛЯ СОЦСЕТЕЙ (Discord, TG, VK) -->
-    <meta property="og:title" content="TCK Team | Official Website">
-    <meta property="og:description" content="Официальный сайт киберспортивной команды TCK Team. Составы, матчи и соцсети.">
-    <meta property="og:image" content="Logo_TCK.png">
+	
+	
+	<!-- МЕТАТЕГИ ДЛЯ СОЦСЕТЕЙ (Social Preview) -->
+    <meta name="description" content="История матчей киберспортивной команды TCK Team. Результаты, счета и записи игр.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nikolaykot02.github.io/tck-team/Logowebsite.png"> <!-- ЗАМЕНИТЕ НА СВОЮ ССЫЛКУ -->
+    <meta property="og:title" content="TCK Team | История матчей">
+    <meta property="og:description" content="Узнайте, как прошли последние игры команды TCK.">
+    <meta property="og:image" content="https://nikolaykot02.github.io/tck-team/Logowebsite.png"> <!-- ПОЛНАЯ ССЫЛКА НА ЛОГО -->
+
+    <!-- Twitter / Discord Large Card -->
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://nikolaykot02.github.io/tck-team/Logowebsite.png">
 
     <!-- ИКОНКА НА ВКЛАДКЕ БРАУЗЕРА -->
     <link rel="icon" type="image/png" href="Logo_TCK.png">
@@ -18,9 +24,9 @@
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com" rel="stylesheet">
-    
+
     <script src="lang.js"></script>
-    
+
     <style>
         body, html { 
             margin: 0; padding: 0; height: 100%; 
@@ -69,7 +75,7 @@
 
         .main-title { text-align: center; text-transform: uppercase; line-height: 0.85; user-select: none; }
         .main-title span { display: block; font-size: clamp(50px, 12vw, 120px); letter-spacing: -2px; }
-		
+
 		.teks1 { color: #002aff; }
         .highlight { color: #ff0000; text-shadow: 0 0 30px rgba(255, 0, 0, 0.5); }
 
@@ -82,6 +88,7 @@
             border-top: 1px solid rgba(255, 0, 0, 0.3); 
             color: #ff0000; padding: 8px 0; font-size: 14px; 
             font-weight: 900; text-transform: uppercase; z-index: 20; 
+            /* Добавляем глоу эффект тексту */
             text-shadow: 0 0 5px #ff0000, 0 0 5px rgba(255, 0, 0, 0.8);
         }
 
@@ -103,6 +110,7 @@
 
         .nav-item:last-child { border-right: none; }
 
+        /* Линия с гловом */
         .nav-item::after {
             content: ''; position: absolute; bottom: 0; left: 50%;
             width: 0; height: 3px; background: #ff0000;
@@ -110,6 +118,7 @@
             transition: 0.4s ease; transform: translateX(-50%);
         }
 
+        /* ЭФФЕКТ ПРИ НАВЕДЕНИИ: КРАСНЫЙ ТЕКСТ + СВЕЧЕНИЕ ТЕКСТА */
         .nav-item:hover { 
             color: #ff0000; 
             background: rgba(255, 0, 0, 0.05);
@@ -160,7 +169,7 @@
             <span class="highlight" data-lang="titlePart2">Team</span>
         </h1>
         <div class="gif-container" onmouseenter="this.querySelector('img').src='https://media.tenor.com/gmbMn1iUZxgAAAAi/cat-%D0%BA%D0%BE%D1%82.gif'" onmouseleave="this.querySelector('img').src='cat_static.png'">
-            <img src="cat_static.png" alt="Cat Logo">
+            <img src="cat_static.png" alt="Cat">
         </div>
     </div>
 
