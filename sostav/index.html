@@ -2,39 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- ИСПРАВЛЕНО: Добавлен viewport для корректного масштаба на телефонах -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TCK-team | Sostav</title>
-
-    <!-- МЕТАТЕГИ ДЛЯ СОЦСЕТЕЙ (Social Preview) -->
+	
+	<!-- МЕТАТЕГИ ДЛЯ СОЦСЕТЕЙ (Social Preview) -->
     <meta name="description" content="Официальный состав киберспортивной команды TCK Team.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nikolaykot02.github.io/tck-team/Logowebsite.png"> <!-- Замените на свою ссылку -->
-    <meta property="og:title" content="TCK-team | Roster">
-    <meta property="og:description" content="Познакомьтесь с игроками нашей команды.">
-    <meta property="og:image" content="../Logowebsite.png">
+    <meta property="og:url" content="https://nikolaykot02.github.io/tck-team/Logowebsite.png"> <!-- ЗАМЕНИТЕ НА СВОЮ ССЫЛКУ -->
+    <meta property="og:title" content="TCK Team | Состав">
+    <meta property="og:description" content="Узнайте, как прошли последние игры команды TCK.">
+    <meta property="og:image" content="https://nikolaykot02.github.io/tck-team/Logowebsite.png"> <!-- ПОЛНАЯ ССЫЛКА НА ЛОГО -->
 
     <!-- Twitter / Discord Large Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="../Logowebsite.png">
+    <meta name="twitter:image" content="https://nikolaykot02.github.io/tck-team/Logowebsite.png">
 
     <link rel="icon" type="image/png" href="../Logo_TCK.png">
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    
+
     <style>
         body { font-family: 'Roboto', sans-serif; padding: 40px; background-color: #0a0a0a; color: white; margin: 0; box-sizing: border-box; }
-        
+
         .sostav-title { font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 50px; font-size: 48px; text-align: left; color: #FF0000; }
-        
+
         .roster-container { 
             display: flex; 
             flex-wrap: wrap; 
-            justify-content: center; 
+            justify-content: center; /* Центрируем карточки на мобилках */
             gap: 20px; 
             max-width: 1200px; 
             margin: 0 auto; 
         }
-        
+
         .player-card { background-color: #111; border: 1px solid #333; width: 200px; padding: 10px; text-align: left; transition: 0.3s; cursor: pointer; }
         .player-card:hover { transform: translateY(-5px); border-color: #FF0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), inset 0 0 10px rgba(255, 0, 0, 0.2); }
         .player-card:hover .player-name2 { color: #FF0000; }
@@ -44,7 +45,7 @@
 
         .player-photo { width: 100%; height: 250px; background-color: #222; margin-bottom: 15px; overflow: hidden; }
         .player-photo img { width: 100%; height: 100%; object-fit: cover; }
-        
+
         .player-role { font-size: 10px; color: #888; text-transform: uppercase; margin-bottom: 5px; border-left: 2px solid #ff0000; padding-left: 5px; transition: 0.3s; }
         .player-role2 { font-size: 10px; color: #888; text-transform: uppercase; margin-bottom: 5px; border-left: 2px solid #002aff; padding-left: 5px; transition: 0.3s; }
 
@@ -78,20 +79,28 @@
         .close-btn { position: absolute; top: 15px; right: 20px; cursor: pointer; color: #555; font-size: 28px; z-index: 10; }
         .modal-info { color: #ccc; line-height: 1.6; }
 
-        /* АДАПТИВНОСТЬ */
+        /* АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ */
         @media (max-width: 768px) {
             body { padding: 20px; padding-bottom: 100px; }
             .sostav-title { font-size: 32px; text-align: center; margin-bottom: 30px; }
-            .player-card { width: 45%; }
+
+            .player-card { width: 45%; } /* Две карточки в ряд на средних экранах */
+
             .modal-content { flex-direction: column; overflow-y: auto; max-height: 90vh; }
             .modal-img-container, .modal-text-container { width: 100%; }
             .modal-img-container { height: 250px; }
             .modal-text-container { padding: 20px; }
-            .back-btn { left: 10px; right: 10px; bottom: 10px; text-align: center; padding: 15px; }
+            .modal-name { font-size: 28px; }
+
+            .back-btn { 
+                left: 10px; right: 10px; bottom: 10px; 
+                text-align: center; padding: 15px; 
+                background: rgba(10, 10, 10, 0.95);
+            }
         }
 
         @media (max-width: 480px) {
-            .player-card { width: 100%; max-width: 280px; }
+            .player-card { width: 100%; max-width: 280px; } /* Одна карточка в ряд на маленьких телефонах */
         }
     </style>
 </head>
@@ -100,7 +109,6 @@
     <h1 class="sostav-title" data-lang="sostavTitle">Roster Tck Team</h1>
 
     <div class="roster-container">
-        <!-- Карточка 1 -->
         <div class="player-card" onclick="showInfo('smert_v_loutabe', 'player_smert_info', 'smert_v_loutabe.jpg', false)">
             <div class="player-role">Creator TCK team</div>
             <div class="player-photo"><img src="smert_v_loutabe.jpg"></div>
@@ -108,16 +116,15 @@
             <div class="player-country">UA</div>
         </div>
 
-        <!-- Карточка 2 -->
         <div class="player-card blue-hover" onclick="showInfo('Barsic', 'player_2_info', 'barsic.jpg', true)">
             <div class="player-role2">Skill</div>
             <div class="player-photo"><img src="barsic.jpg"></div>
+            <div class="player-name">Barsic</div>
             <div class="player-name">Barsik</div>
             <div class="player-country">UA</div>
         </div>
     </div>
 
-    <!-- Модальное окно -->
     <div id="infoModal" class="modal" onclick="closeInfo()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <span class="close-btn" onclick="closeInfo()">&times;</span>
@@ -128,28 +135,17 @@
             </div>
         </div>
     </div>
-    
+
     <a href="../" class="back-btn" data-lang="backBtn">← Back to Main</a>
 
-    <!-- Подключаем скрипт перевода -->
     <script src="../lang.js"></script>
-
     <script>
-        // Функция открытия окна
         function showInfo(name, infoKey, imgPath, isBlue) {
             const modal = document.getElementById('infoModal');
             document.getElementById('infoName').innerText = name;
-            
-            // Проверка: если функция getTranslation существует в lang.js — используем её
-            let description = infoKey;
-            if (typeof getTranslation === "function") {
-                description = getTranslation(infoKey);
-            }
-            
-            document.getElementById('infoText').innerText = description;
+            document.getElementById('infoText').innerText = typeof getTranslation === "function" ? getTranslation(infoKey) : infoKey;
             document.getElementById('modalImg').src = imgPath || '';
-            
-            // Меняем цвет обводки (синий или красный)
+
             if (isBlue) modal.classList.add('is-blue');
             else modal.classList.remove('is-blue');
 
@@ -157,7 +153,6 @@
             setTimeout(() => { modal.classList.add('active'); }, 10);
         }
 
-        // Функция закрытия
         function closeInfo() { 
             const modal = document.getElementById('infoModal');
             modal.classList.remove('active');
@@ -167,14 +162,9 @@
                 modal.classList.remove('closing');
             }, 500);
         }
-        
-        // Закрытие на Esc
-        window.onkeydown = (e) => { if (e.key === "Escape") closeInfo(); };
 
-        // Инициализация языка при загрузке
-        window.onload = function() { 
-            if (typeof updateLanguage === "function") updateLanguage(); 
-        };
+        window.onkeydown = (e) => { if (e.key === "Escape") closeInfo(); };
+        window.onload = function() { if (typeof updateLanguage === "function") updateLanguage(); };
     </script>
 </body>
 </html>
