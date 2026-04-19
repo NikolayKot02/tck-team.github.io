@@ -21,9 +21,9 @@
     <!-- ИКОНКА НА ВКЛАДКЕ БРАУЗЕРА -->
     <link rel="icon" type="image/png" href="Logo_TCK.png">
 
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
 
     <script src="lang.js"></script>
 
@@ -35,6 +35,21 @@
             display: flex; flex-direction: column; 
             overflow: hidden; position: relative;
         }
+		
+		.sub-text {
+    /* Добавляем !important, чтобы перебить основной стиль заголовка */
+			font-size: 20px !important; 
+    
+			font-family: 'JetBrains Mono', monospace;
+			font-style: italic;
+			color: #a0a0a0;
+			letter-spacing: 2px;
+			display: block; /* Чтобы текст был на отдельной строке сверху */
+			line-height: 4.5; /* Увеличим межстрочный интервал, чтобы не слипалось */
+			text-transform: none;
+			opacity: 1.0;
+		}
+
 
         /* ВЕРХНЯЯ ПАНЕЛЬ */
         .top-bar {
@@ -59,6 +74,7 @@
         .stat-item { text-align: center; }
         .stat-value { display: block; font-size: 18px; font-weight: 900; color: #0000FF; line-height: 1; }
         .stat-value1 { display: block; font-size: 18px; font-weight: 900; color: #FF0000; line-height: 1; }
+		.stat-value2 { display: block; font-size: 18px; font-weight: 900; color: #00ff00; line-height: 1; }
         .stat-label { font-size: 8px; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
 
         .bg-image {
@@ -89,7 +105,7 @@
             color: #ff0000; padding: 8px 0; font-size: 14px; 
             font-weight: 900; text-transform: uppercase; z-index: 20; 
             /* Добавляем глоу эффект тексту */
-            text-shadow: 0 0 5px #ff0000, 0 0 5px rgba(255, 0, 0, 0.8);
+            text-shadow: 0 0 10px #ff0000, 0 0 10px rgba(0, 255, 0, 0.8);
         }
 
         /* НИЖНЯЯ ПАНЕЛЬ */
@@ -149,7 +165,7 @@
             <div class="top-nickname">TCK Team</div>
         </div>
         <div class="top-stats">
-            <div class="stat-item"><span class="stat-value">?</span><span class="stat-label" data-lang="statWins">Wins</span></div>
+            <div class="stat-item"><span class="stat-value2">?</span><span class="stat-label" data-lang="statWins">Wins</span></div>
             <div class="stat-item"><span class="stat-value1">?</span><span class="stat-label" data-lang="statLosses">Losses</span></div>
             <div class="stat-item"><span class="stat-value">?</span><span class="stat-label" data-lang="statMatches">Matches</span></div>
         </div>
@@ -165,6 +181,8 @@
 
     <div class="content">
         <h1 class="main-title">
+			<span class="sub-text" data-lang="minitext">Ukrainian Esports · 2026</span>
+		
             <span class="teks1" data-lang="titlePart1">TCK</span>
             <span class="highlight" data-lang="titlePart2">Team</span>
         </h1>
@@ -178,9 +196,10 @@
     </div>
 
     <nav class="bottom-nav">
-        <button class="nav-item" onclick="window.location.href='sostav/'" data-lang="menuSostav">Составы</button>
-        <button class="nav-item" onclick="window.location.href='matches/'" data-lang="menuMatches">Матчи</button>
-        <button class="nav-item" onclick="window.location.href='social/'" data-lang="menuSocial">Соцсети</button>
+        <button class="nav-item" onclick="window.location.href='sostav'" data-lang="menuSostav">Составы</button>
+        <button class="nav-item" onclick="window.location.href='matches'" data-lang="menuMatches">Матчи</button>
+        <button class="nav-item" onclick="window.location.href='social'" data-lang="menuSocial">Соцсети</button>
+		<button class="nav-item" onclick="window.location.href='thank'" data-lang="menuthank">Спасибо за помощь</button>
     </nav>
 
     <script>
