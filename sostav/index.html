@@ -73,7 +73,7 @@
     <h1 class="sostav-title" data-lang="sostavTitle">Roster Tck Team</h1>
 
     <div class="roster-container">
-        <!-- КАРТОЧКА 1: Число 2500 отобразится только на карточке -->
+        <!-- Пример карточки (передаем только ссылку в конце) -->
         <div class="player-card" onclick="showInfo('smert_v_loutabe', 'player_smert_info', 'smert_v_loutabe.jpg', false, 'https://faceit.com')">
             <div class="player-role">Creator TCK team</div>
             <div class="player-photo"><img src="smert_v_loutabe.jpg"></div>
@@ -82,7 +82,6 @@
             <div class="player-faceit-brief">Faceit: ?lvl</div>
         </div>
 
-        <!-- КАРТОЧКА 2 -->
         <div class="player-card blue-hover" onclick="showInfo('Barsic', 'player_2_info', 'barsic.jpg', true, 'https://faceit.com')">
             <div class="player-role2">Skill</div>
             <div class="player-photo"><img src="barsic.jpg"></div>
@@ -106,18 +105,24 @@
 
     <a href="../" class="back-btn" data-lang="backBtn">← Back to Main</a>
 
+    <!-- Подключаем твой файл с переводами -->
     <script src="../lang.js"></script>
+
     <script>
         function showInfo(name, infoKey, imgPath, isBlue, faceitUrl) {
             const modal = document.getElementById('infoModal');
             document.getElementById('infoName').innerText = name;
+            
+            // Используем твою функцию перевода для описания
             document.getElementById('infoText').innerText = typeof getTranslation === "function" ? getTranslation(infoKey) : infoKey;
             document.getElementById('modalImg').src = imgPath || '';
 
             const btnContainer = document.getElementById('faceitButtonContainer');
 
             if (faceitUrl) {
-                btnContainer.innerHTML = `<a href="${faceitUrl}" target="_blank" class="faceit-link" data-lang="faceit">Посмотреть на Faceit</a>`;
+                // ПОЛУЧАЕМ ПЕРЕВОД ДЛЯ ТЕКСТА КНОПКИ ИЗ ТВОЕГО ОБЪЕКТА (faceit: "Посмотреть на Faceit")
+                const btnText = typeof getTranslation === "function" ? getTranslation('faceit') : "Faceit";
+                btnContainer.innerHTML = `<a href="${faceitUrl}" target="_blank" class="faceit-link">${btnText}</a>`;
             } else {
                 btnContainer.innerHTML = '';
             }
@@ -140,7 +145,9 @@
         }
 
         window.onkeydown = (e) => { if (e.key === "Escape") closeInfo(); };
-        window.onload = function() { if (typeof updateLanguage === "function") updateLanguage(); };
+        window.onload = function() { 
+            if (typeof updateLanguage === "function") updateLanguage(); 
+        };
     </script>
 </body>
 </html>
