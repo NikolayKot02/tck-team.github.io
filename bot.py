@@ -5,11 +5,11 @@ import base64
 import os
 
 # Эти данные бот возьмет из настроек хостинга, а не из кода
-TOKEN = os.getenv('DISCORD_TOKEN')
-GITHUB_TOKEN = os.getenv('GH_TOKEN')
-REPO_NAME = "ТвойНик/ИмяРепозитория" # ЗАМЕНИ НА СВОЁ (например: ivan/my-site)
+TOKEN = os.getenv('MTQ5NjIyMjE4MzU4MjYwMTM0OA.G3zomL.T8u0VVn6Cc-LhW0lVHqJw33D7DAouWISK-H5bE')
+GITHUB_TOKEN = os.getenv('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')
+REPO_NAME = "nikolaykot02/tck-team" # ЗАМЕНИ НА СВОЁ (например: ivan/my-site)
 FILE_PATH = "logs.txt"
-CHANNEL_ID = 123456789 # ЗАМЕНИ НА ID СВОЕГО КАНАЛА
+CHANNEL_ID = 1496225381928145166# ЗАМЕНИ НА ID СВОЕГО КАНАЛА
 
 intents = discord.Intents.default()
 intents.message_content = True
