@@ -20,7 +20,8 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 def update_github(content):
     # ПРАВИЛЬНЫЙ URL ДЛЯ API
-    url = f"https://github.com/tck-team/contents/logs.txt"
+    url = f"https://github.com{REPO_NAME}/contents/{FILE_PATH}"
+    "
     headers = {
         "Authorization": f"token {GITHUB_TOKEN}",
         "Accept": "application/vnd.github.v3+json"
