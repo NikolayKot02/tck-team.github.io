@@ -10,7 +10,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 GITHUB_TOKEN = os.getenv('GH_TOKEN')
 
 # ТВОИ НАСТРОЙКИ
-REPO_NAME = "nikolaykot02/tck-team" 
+REPO_NAME = "https://github.com/NikolayKot02/tck-team/blob/main/logs.txt" 
 FILE_PATH = "logs.txt"
 CHANNEL_ID = 1496225381928145166  # ЗАМЕНИ НА ID СВОЕГО КАНАЛА
 
